@@ -1,0 +1,57 @@
+---
+import Card from "./Card.astro";
+
+interface features {
+    heading: string;
+    content: string;
+}
+
+const features: features[] = [
+    {
+        heading: "Zero JavaScript Runtime",
+        content:
+            "Astro renders HTML on the server and strips away any remaining unused JavaScript",
+    },
+    {
+        heading: "The Power of Islands",
+        content:
+            "Need interactine UI? Load individual, non-blocking component islands in parallel.",
+    },
+    {
+        heading: "Lazy-Loading Islands",
+        content:
+            "Components only hydrate when they scroll into view. If you don't see it, Astro won't load it.",
+    },
+];
+---
+
+<section class="features">
+    <div class="container">
+        {
+            features
+                ? features.map((feature) => (
+                      <Card>
+                          <h3>{feature.heading}</h3>
+                          <p>{feature.content}</p>
+                      </Card>
+                  ))
+                : null
+        }
+    </div>
+</section>
+
+<style>
+    .features .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+        padding: 0 20px;
+        margin: 30px auto;
+    }
+
+    @media (max-width: 480px) {
+        .features .container {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
